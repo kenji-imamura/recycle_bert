@@ -4,7 +4,6 @@
 #
 trap 'exit 2' 2
 DIR=$(cd $(dirname $0); pwd)
-. $DIR/../../setenv.sh
 
 CODE=$DIR/user_code
 export PYTHONPATH="$CODE:$PYTHONPATH"
@@ -13,6 +12,19 @@ BERT_MODEL=$DIR/uncased_L-12_H-768_A-12
 CORPUS=$DIR/corpus
 SRC=en
 TRG=de
+
+#
+# Download the corpus
+#
+mkdir -p $CORPUS
+for prefix in train newstest2012 newstest2013 newstest2014 newstest2015; do
+    for lang in $SRC $TRG; do
+	file=$prefix.$lang
+	if [ !  -f $file ]; then
+	    wget -P $CORPUS https://nlp.stanford.edu/projects/nmt/data/wmt14.en-de/$file
+	fi
+    done
+done
 
 #
 # Train sub-word models
