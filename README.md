@@ -1,7 +1,7 @@
 # Recycling a Pre-trained BERT Encoder for Neural Machine Translation (Imamura and Sumita, 2019)
 
 This example replaces the Transformer-based fairseq encoder with a
-pre-trained BERT encoder.  Based on the fairseq v0.8.0, the paper
+pre-trained BERT encoder.  Based on the fairseq v0.9.0, the paper
 [https://www.aclweb.org/anthology/D19-5603/] is implemented.
 
 ## Example usage
