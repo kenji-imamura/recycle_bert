@@ -5,7 +5,6 @@
 
 trap 'exit 2' 2
 DIR=$(cd $(dirname $0); pwd)
-. $DIR/../../setenv.sh
 
 CODE=$DIR/user_code
 export PYTHONPATH="$CODE:$PYTHONPATH"
