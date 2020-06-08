@@ -27,6 +27,17 @@ for prefix in train newstest2012 newstest2013 newstest2014 newstest2015; do
 done
 
 #
+# Download the BERT model
+#
+if [ ! -d $BERT_MODEL ]; then
+    wget https://storage.googleapis.com/bert_models/2018_10_18/uncased_L-12_H-768_A-12.zip
+    gzip -d uncased_L-12_H-768_A-12.zip
+    (cd $BERT_MODEL ; \
+     ln -s bert_config.json config.json ; \
+     transformers bert bert_model.ckpt config.json pytorch_model.bin)
+fi
+
+#
 # Train sub-word models
 #
 
