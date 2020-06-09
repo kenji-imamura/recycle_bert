@@ -56,8 +56,8 @@ transformers-cli convert --model_type bert \
 ```
 
 ### Tokenization
-The source side of corpora
-is tokenized and converted into sub-words using the BERT tokenizer.
+The source sides of corpora
+are tokenized and converted into sub-words using the BERT tokenizer.
 ```
 cat $CORPUS/train.en \
     | python3 $CODE/bert_tokenize.py \
