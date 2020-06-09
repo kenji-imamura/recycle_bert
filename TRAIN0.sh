@@ -34,7 +34,10 @@ if [ ! -d $BERT_MODEL ]; then
     unzip uncased_L-12_H-768_A-12.zip
     (cd $BERT_MODEL ; \
      ln -s bert_config.json config.json ; \
-     transformers bert bert_model.ckpt config.json pytorch_model.bin)
+     transformers-cli convert --model_type bert \
+	--tf_checkpoint bert_model.ckpt \
+	--config bert_config.json \
+	--pytorch_dump_output pytorch_model.bin)
 fi
 
 #

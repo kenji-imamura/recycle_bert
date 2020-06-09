@@ -18,9 +18,11 @@ is used.
 This example is based on the [fairseq](https://github.com/pytorch/fairseq)
 and uses [transformers](https://github.com/huggingface/transformers)
 for applying pre-trained BERT models.
+If you convert the BERT models from TensorFlow to PyTorch, the [TensorFlow](https://www.tensorflow.org/) library is also required.
 ```
 pip3 install fairseq
 pip3 install transformers
+pip3 install tensorflow
 ```
 
 ### Directories / paths
@@ -40,16 +42,17 @@ To use pre-trained BERT models for the TensorFlow library in the
 fairseq translator, they have to be converted into the models for the
 PyTorch library.
 
+- You need the TensorFlow library to convert the models.
 - If you have already installed
 [transformers](https://github.com/huggingface/transformers), there is
-the `transformers` command in your path.
+the `transformers-cli` command in your path.
 ```
 cd $BERT_MODEL
 ln -s bert_config.json config.json
-transformers bert \
-	     bert_model.ckpt \
-	     config.json \
-	     pytorch_model.bin
+transformers-cli convert --model_type bert \
+  --tf_checkpoint bert_model.ckpt \
+  --config bert_config.json \
+  --pytorch_dump_output pytorch_model.bin
 ```
 
 ### Tokenization
